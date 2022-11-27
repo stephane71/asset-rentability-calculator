@@ -8,7 +8,7 @@ export default function Home(): JSX.Element {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setAddress("0x..."));
+    dispatch(setAddress(process.env.NEXT_PUBLIC_WALLET_ADDRESS || ""));
   }, [dispatch]);
 
   return (
