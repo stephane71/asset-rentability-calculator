@@ -6,6 +6,7 @@ import {
   useGetTransactionsQuery,
   useGetTransactionsQueryType,
 } from "../services/covalent";
+import { TransactionListMetaData } from "../components/TransationListMetaData";
 
 export default function Home(): JSX.Element {
   const address = useSelector(walletAddressSelector);
@@ -33,7 +34,8 @@ export default function Home(): JSX.Element {
     <div>
       <div>Home</div>
       <div>{address}</div>
-      {data ? data.items.length : []}
+
+      <TransactionListMetaData transactions={data} />
     </div>
   );
 }
