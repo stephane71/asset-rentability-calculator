@@ -5,11 +5,18 @@ export type TransactionResponse = {
   error_message: string;
 };
 
+export type Pagination = {
+  has_more: boolean;
+  page_number: number;
+  page_size: number;
+  total_count: any;
+};
+
 export type Transactions = {
   items: TransactionItem[];
   address: string;
   chain_id: number;
-  pagination: any;
+  pagination: Pagination;
   next_update_at: string;
   updated_at: string;
   quote_currency: string;
