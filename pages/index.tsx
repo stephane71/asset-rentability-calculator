@@ -10,10 +10,12 @@ import {
 export default function Home(): JSX.Element {
   const address = useSelector(walletAddressSelector);
   const dispatch = useDispatch();
-  const { data, error }: useGetTransactionsQueryType = useGetTransactionsQuery({
-    address: process.env.NEXT_PUBLIC_WALLET_ADDRESS || "",
-    network: 137,
-  });
+  const { data, error, isLoading }: useGetTransactionsQueryType =
+    useGetTransactionsQuery({
+      address: process.env.NEXT_PUBLIC_WALLET_ADDRESS || "",
+      network: 137,
+      page: 0,
+    });
 
   useEffect(() => {
     dispatch(setAddress(process.env.NEXT_PUBLIC_WALLET_ADDRESS || ""));
