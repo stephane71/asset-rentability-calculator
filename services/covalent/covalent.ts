@@ -4,6 +4,7 @@ import { TransactionResponse, Transactions } from "./types";
 type CovalentQueryParams = {
   network: number;
   address: string;
+  page: number;
 };
 
 const baseQuery = fetchBaseQuery({
@@ -18,8 +19,8 @@ export const api = createApi({
   tagTypes: ["Wallet", "Transactions"],
   endpoints: (build) => ({
     getTransactions: build.query<Transactions, CovalentQueryParams>({
-      query: ({ network, address }) =>
-        `${network}/address/${address}/transactions_v2/?key=${process.env.NEXT_PUBLIC_COVALENT_API_KEY}`,
+      query: ({ network, address, page }) =>
+        `${network}/address/${address}/transactions_v2/?key=${process.env.NEXT_PUBLIC_COVALENT_API_KEY}&page-number=${page}`,
       providesTags: ["Wallet", "Transactions"],
       transformResponse: (response: TransactionResponse): Transactions =>
         response.data as Transactions,
