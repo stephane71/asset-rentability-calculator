@@ -25,6 +25,10 @@ export default function Home(): JSX.Element {
     return <div>Something wrong</div>;
   }
 
+  if (isLoading) {
+    return <div>Loading data</div>;
+  }
+
   return (
     <div>
       <div>Home</div>
