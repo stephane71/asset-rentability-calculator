@@ -1,5 +1,5 @@
-export type TransactionResponse = {
-  data: Transactions;
+export type CovalentApiResponse = {
+  data: CovalentApiResponseData;
   error: string;
   error_code: string;
   error_message: string;
@@ -12,8 +12,8 @@ export type Pagination = {
   total_count: any;
 };
 
-export type Transactions = {
-  items: TransactionItem[];
+export type CovalentApiResponseData = {
+  items: TransactionItem[] | BalanceItem[];
   address: string;
   chain_id: number;
   pagination: Pagination;
@@ -58,4 +58,23 @@ export type TransactionItemLogEvent = {
   sender_name: string;
   tx_hash: string;
   tx_offset: number;
+};
+
+export type BalanceItem = {
+  balance: string;
+  balance_24h: string;
+  contract_address: string;
+  contract_decimals: number;
+  contract_name: string;
+  contract_ticker_symbol: string;
+  last_transferred_at: string;
+  logo_url: string;
+  native_token: boolean;
+  nft_data: any;
+  quote: number;
+  quote_24h: any;
+  quote_rate: number;
+  quote_rate_24h: any;
+  supports_erc: string[];
+  type: string;
 };

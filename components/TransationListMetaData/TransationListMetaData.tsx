@@ -1,7 +1,7 @@
-import { Transactions } from "services/covalent/types";
+import { CovalentApiResponseData } from "services/covalent/types";
 
 type Props = {
-  transactions: Transactions;
+  transactions: CovalentApiResponseData;
 };
 
 export function TransactionListMetaData({ transactions }: Props): JSX.Element {
