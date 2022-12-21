@@ -6,6 +6,7 @@ import Transaction from "./Transaction.mock.json";
 
 const COVALENT_NETWORK = ":network/address/:address";
 const COVALENT_TRANSACTIONS = `transactions_v2`;
+const COVALENT_TRANSACTION = `transaction_v2`;
 const COVALENT_BALANCES = `balances_v2`;
 
 export const handlers = [
@@ -24,7 +25,7 @@ export const handlers = [
   ),
 
   rest.get(
-    `${COVALENT_API_URL}/${COVALENT_NETWORK}/${COVALENT_BALANCES}/:tsxHash`,
+    `${COVALENT_API_URL}/${COVALENT_NETWORK}/${COVALENT_TRANSACTION}/:tsxHash`,
     (_req, res, ctx) => {
       return res(ctx.json(Transaction));
     }
