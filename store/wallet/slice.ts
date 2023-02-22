@@ -3,22 +3,28 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface WalletState {
   address: string;
+  network: number | null;
 }
 
 const initialState: WalletState = {
   address: "",
+  network: null,
 };
 
 export const walletSlice = createSlice({
   name: "wallet",
   initialState,
   reducers: {
-    setAddress: (state, action: PayloadAction<string>) => {
-      return { ...state, address: action.payload };
+    setWalletDetails: (
+      state,
+      action: PayloadAction<Pick<WalletState, "address" | "network">>
+    ) => {
+      const { address, network } = action.payload;
+      return { ...state, address, network };
     },
   },
 });
 
-export const { setAddress } = walletSlice.actions;
+export const { setWalletDetails } = walletSlice.actions;
 
 export default walletSlice.reducer;

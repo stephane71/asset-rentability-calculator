@@ -1,3 +1,6 @@
 import { RootState } from "../store";
 
-export const walletAddressSelector = (state: RootState) => state.wallet.address;
+export const walletDetailsSelector = (state: RootState) => ({
+  address: state.wallet.address,
+  network: state.wallet.network,
+});

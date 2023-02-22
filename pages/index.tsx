@@ -1,7 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { walletAddressSelector } from "../store/wallet/selectors";
-import { setAddress } from "../store/wallet/slice";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { walletDetailsSelector } from "../store/wallet/selectors";
 import {
   useGetBalanceQuery,
   useGetBalanceQueryType,
@@ -11,10 +9,11 @@ import {
 import { TransactionList } from "../components/TransactionList";
 import { TransactionListMetaData } from "../components/TransationListMetaData";
 import { Balances } from "../components/Balances";
+import { WalletSelector } from "../components/WalletSelector";
 
 export default function Home(): JSX.Element {
-  const address = useSelector(walletAddressSelector);
-  const dispatch = useDispatch();
+  const walletDetails = useSelector(walletDetailsSelector);
+
   const { data, error, isLoading }: useGetTransactionsQueryType =
     useGetTransactionsQuery({
       address: process.env.NEXT_PUBLIC_WALLET_ADDRESS || "",
@@ -31,10 +30,6 @@ export default function Home(): JSX.Element {
     network: 137,
   });
 
-  useEffect(() => {
-    dispatch(setAddress(process.env.NEXT_PUBLIC_WALLET_ADDRESS || ""));
-  }, [dispatch]);
-
   if (error) {
     return <div>Something wrong</div>;
   }
@@ -46,7 +41,9 @@ export default function Home(): JSX.Element {
   return (
     <div>
       <div>Home</div>
-      <div>{address}</div>
+      <div>{walletDetails.address}</div>
+
+      <WalletSelector />
 
       {!errorBalances && !isLoadingBalances && <Balances balances={balances} />}
       <TransactionListMetaData transactions={data} />
