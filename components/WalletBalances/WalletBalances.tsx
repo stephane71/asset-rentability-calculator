@@ -5,7 +5,7 @@ type Props = {
   balances: BalanceItem[];
 };
 
-export function Balances({ balances }: Props) {
+export function WalletBalances({ balances }: Props) {
   return (
     <div style={{ padding: 24 }}>
       {balances

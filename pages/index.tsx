@@ -8,7 +8,7 @@ import {
 } from "../services/covalent";
 import { TransactionList } from "../components/TransactionList";
 import { TransactionListMetaData } from "../components/TransationListMetaData";
-import { Balances } from "../components/Balances";
+import { WalletBalances } from "../components/WalletBalances";
 import { WalletSelector } from "../components/WalletSelector";
 
 export default function Home(): JSX.Element {
@@ -45,7 +45,9 @@ export default function Home(): JSX.Element {
 
       <WalletSelector />
 
-      {!errorBalances && !isLoadingBalances && <Balances balances={balances} />}
+      {!errorBalances && !isLoadingBalances && (
+        <WalletBalances balances={balances} />
+      )}
       <TransactionListMetaData transactions={data} />
       <TransactionList transactions={data.items} />
     </div>
