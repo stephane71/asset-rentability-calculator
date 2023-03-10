@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { store } from "../store";
 import { Provider } from "react-redux";
 import { useEffect, useState } from "react";
+import { Container } from "@mui/material";
 
 function prepare() {
   if (process.env.NODE_ENV === "development") {
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <Container maxWidth="sm">
+        <Component {...pageProps} />
+      </Container>
     </Provider>
   );
 }
